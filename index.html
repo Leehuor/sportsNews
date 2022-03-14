@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    :root {
+  --background-header: #9995a3;
+  --font-xl: 3rem;
+  --font-lg: 1.5rem;
+  --font-sm: 1rem;
+  --banner: #533a3a;
+  --background-body: #c4c4c4;
+  --gap: 10px;
+  --gardain: #a16a6a55;
+}
+
+p,
+img,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+i {
+  cursor: pointer;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.container{
+  width: 100%;
+}
+
+body {
+  background-color: var(--background-body);
+  /* width: 100%; */
+}
+
+#pop_up{
+  position: absolute;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 99;
+  display: none;
+}
+
+#pop_up.active{
+  display: block;
+}
+
+header {
+  background-color: var(--background-header);
+}
+
+.header {
+  padding: 1rem 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header .logo {
+  background-color: red;
+  padding: 20px 10px;
+  border-radius: 60%;
+}
+
+.header .logo h1 {
+  color: white;
+}
+
+.header .banner {
+  background-color: var(--banner);
+  padding: 1.5rem 0px;
+  color: white;
+  width: 50%;
+  text-align: center;
+  border-radius: 10px;
+}
+
+nav {
+  background-color: white;
+  padding: 8px 0px;
+  position: relative;
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+nav ul li {
+  list-style: none;
+  background-color: #75a8f5;
+  border-radius: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  display: block;
+  padding: var(--gap);
+  color: white;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: greenyellow;
+  color: black;
+}
+
+.change-background {
+  position: absolute;
+  right: 10px;
+}
+
+.login_signup_bar {
+  background-color: #493e4a;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.btn_search_top{
+    display: none;
+}
+
+/* .login_signup_bar .btn_search {
+    display: none;
+} */
+
+.login_signup_bar button {
+  background-color: #aaa7d0;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 10px;
+  margin: 0px 5px;
+  transition: all 300ms ease;
+}
+
+.login_signup_bar button:hover {
+  opacity: 0.8;
+}
+
+.main_section {
+  width: 80%;
+  margin: auto;
+  display: flex;
+}
+
+.content_section {
+  width: 70%;
+  margin: 20px;
+  /* background-color: white; */
+}
+
+.sildbar_section {
+  width: 30%;
+  background-color: var(--background-header);
+  text-align: center;
+}
+
+.search_button {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.search_button input {
+  border-radius: 5px;
+  outline: 1px solid rgb(210, 162, 255);
+  border: none;
+  font-size: 18px;
+}
+
+.search_button input::placeholder {
+  font-size: 18px;
+  position: absolute;
+  left: 10px;
+  top: -1px;
+}
+
+
+
+button {
+  cursor: pointer;
+}
+
+.search_button button {
+  background-color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.news,
+.sport {
+  margin-top: 20px;
+}
+
+.news h3 {
+  color: white;
+  display: inline-block;
+  background-color: black;
+  padding: 7px;
+  border-top-right-radius: 40px;
+  width: 90px;
+  text-align: center;
+  /* transform: translateX(px); */
+}
+
+.news_content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  background-color: rgb(59, 59, 59);
+  padding: 1rem 0px;
+}
+
+.news_content img {
+  width: 250px;
+  transition: all 200ms ease;
+}
+
+.news_content article img:hover {
+  transform: scale(1.1);
+}
+
+.news_content p {
+  color: white;
+}
+
+.sport {
+  background-color: #c4c4c4;
+}
+
+.sport h3 {
+  color: white;
+  display: inline-block;
+  background-color: red;
+  padding: 7px;
+  border-top-right-radius: 40px;
+  border-bottom-left-radius: 20px;
+  width: 90px;
+  text-align: center;
+  /* transform: translateX(px); */
+}
+
+.sport_content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  background-color: #060461;
+  padding: 1rem 0px;
+}
+
+.sport_content img {
+  width: 250px;
+  transition: all 200ms ease;
+}
+
+.sport_content article img:hover {
+  transform: scale(1.1);
+}
+
+.sport_content p {
+  color: white;
+}
+
+/* Entertanment */
+
+.entertanment {
+  background-color: #c4c4c4;
+  margin: 20px 0px;
+}
+
+.entertanment h3 {
+  color: white;
+  display: inline-block;
+  background-color: rgb(128, 129, 223);
+  padding: 7px;
+  border-top-right-radius: 50px;
+  width: 140px;
+  text-align: center;
+  /* transform: translateX(px); */
+}
+
+.entertanment_content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  background-color: rgb(7, 7, 54);
+  padding: 1rem 0px;
+}
+
+.entertanment_content img {
+  width: 250px;
+  transition: all 200ms ease;
+}
+
+.entertanment_content article img:hover {
+  transform: scale(1.1);
+}
+
+.entertanment_content p {
+  color: white;
+}
+
+.humberger i , #close_humberger i{
+    font-size: 30px;
+    position: absolute;
+    left: 20px;
+} 
+ .humberger,.close_humberger {
+    display: none;
+}
+
+
+footer{
+  background-color: #691f1f;
+  width: 80%;
+  border-radius: 10px;
+  margin: auto;
+  color: white;
+  position: relative;
+  height: 200px;
+  /* display: none; */
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0px;
+}
+
+.footer .creator_logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: gainsboro;
+}
+
+.copyright{
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+}
+
+/* .btn_up {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+  display: none;
+}
+
+.btn_up .active{
+  display: block;
+} */
+
+#btn_up {
+  background-color: #691f1f;
+  padding: 10px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  display: none;
+}
+
+#btn_up:hover {
+  opacity: 0.7;
+}
+
+#btn_up.active {
+  display: block;
+}
+
+#btn_up i {
+  color: white;
+  font-size: 20px;
+}
+
+
+
+@media (max-width: 931px) {
+  
+.main_section {
+    width: 100%;
+    /* transform: translateX(140px); */
+    /* text-align: center; */
+    /* display: flex; */
+    justify-content: center;
+    /* top: 100px; */
+}
+/* .humberger {
+    display: block;
+} */
+
+.btn_search_top {
+    display: block;
+}
+  .sildbar_section {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .news_content img,.entertanment_content img,.sport_content img {
+    width: 75%;
+  }
+  .news_content,.entertanment_content,.sport_content {
+    width: 130%;
+    text-align: center;
+  }
+
+
+    .btn_search_top {
+        display: block;
+    }
+
+    .banner {
+        display: none;
+    }
+
+    .humberger {
+        display: block;
+    }
+
+    .humberger.active {
+      display: none;
+    }
+
+
+    .close_humberger.active{
+      display: block;
+    }
+
+    .humberger i, .close_humberger i{
+        top: 3px;
+    }
+
+    nav {
+        padding: 20px;
+    }
+    nav ul{
+        background-color: white;
+        width: 100%;
+        padding: 10px 10px;
+        flex-direction: column;
+        position: absolute;
+        top: 30px;
+        left: -700px;
+        transition: all 200ms ease ;
+    }
+    nav ul.active{
+      top: 30px;
+      left: 0px;
+    }
+
+
+    .main_section {
+      /* left: 0px; */
+      justify-content: start;
+      gap: 10px;
+  }
+}
+
+</style>
+<body>
+    <div id="pop_up"></div>
+    <div class="container">
+        <header id="main_header">
+            <div class="header">
+                <div class="logo">
+                <h1>Sports</h1>
+                </div>
+                <div class="banner">
+                    <div>Banner</div>
+                </div>
+            </div>
+        </header>
+        <nav id="nav">
+            <a class="humberger" id="humberger""><i class="fa-solid fa-bars"></i></a>
+            <a class="close_humberger" id="close_humberger"> <i class="fa-solid fa-xmark"></i> </a>
+            <ul id="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Sports</a></li>
+                <li><a href="#">Entertanment</a></li>
+                <li><a href="#">Sopport</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Follow us</a></li>
+                <li class="change-background"><a href="#"><i class="fa-solid fa-moon"></i></a></li>
+            </ul>
+        </nav>
+        <main>
+            <h1 style="display: none;">content news</h1>
+            <div class="login_signup_bar">
+                <div>
+                    <button class="btn_search_top"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div>
+                    <button>Login</button>
+                    <button>Sign up</button>
+                </div>
+            </div>
+            <section class="main_section">
+                <h1 style="display: none;">Sports News</h1>
+                <section class="content_section">
+                    <aside class="news">
+                        <h3>News</h3>
+                        <div class="news_content">
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+                        </div>
+                    </aside>
+
+                    <aside class="sport">
+                        <h3>Sports</h3>
+                        <div class="sport_content">
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+                        </div>
+                    </aside>
+
+                    <aside class="entertanment">
+                        <h3>Entertanment</h3>
+                        <div class="entertanment_content">
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+
+                            <article>
+                                <img src="https://puui.qpic.cn/vcover_hz_pic/0/wzx7pbebgpxlqqr1612442717167/0" alt="">
+                            <p>Lorem ipsum dolor sit amet sdad dfsdf <br>
+                                skdajsd hjdsfj........?</p>
+                            </article>
+                        </div>
+                    </aside>
+
+                </section>
+
+                <section class="sildbar_section">
+                    <aside class="search_button">
+                        <input class="input_search" type="text" placeholder="Search"> 
+                        <button class="btn_search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </aside>    
+                </section>
+            </section>
+        </main>
+
+        <footer id="contact">
+            <div class="footer">
+
+                <aside class="contact">
+                    <h2>Contact</h2>
+                <p>
+                    Phone: 011-000-000 <br>
+                    Email: sunlyhuor@huor.lee <br>
+                    Telegarm: +855 000-000-000 <br>
+                    Facebbok Page: sunlyhour 
+                </p>
+            </aside>
+            
+            <aside class="address">
+                <h2>Address</h2>
+                <address>
+                    address 1 : 2,Doun Penh .. <br>
+                    address 2 : 2,Phnom Penh .. <br>
+                    Street : 33 <br>
+                    City/Twon : Phnom Penh <br>
+                </address>
+            </aside>
+            
+            <aside class="creator">
+                <div class="creator_logo"></div>
+                <h3>By: Lee-Huor</h3>
+            </aside>
+        </div>
+            <div class="copyright">
+                <address>
+                    &copyBy : SunLyhuor. 
+                </address>
+            </div>
+        </footer>
+        <button id="btn_up"><i class="fa-solid fa-arrow-up"></i></button>
+    </div>
+
+    <script>
+        var humberger = document.getElementById("humberger");
+var menu = document.getElementById("menu");
+var main_header = document.getElementById("main_header");
+var nav = document.getElementById("nav");
+var close_humberger = document.getElementById("close_humberger");
+var pop_up = document.getElementById("pop_up");
+var btn_up = document.getElementById("btn_up");
+
+
+humberger.addEventListener("click" , function () {
+    menu.classList.add("active");
+    // close_humberger.style.display = "block";
+    close_humberger.classList.add("active");
+    humberger.classList.add("active");
+    pop_up.classList.add("active");
+})
+
+
+close_humberger.addEventListener("click" , ()=> {
+    menu.classList.remove("active");
+    // close_humberger.style.display = "none";
+    humberger.classList.remove("active");
+    close_humberger.classList.remove("active");
+    pop_up.classList.remove("active");
+})
+
+pop_up.addEventListener("click" , ()=> {
+    menu.classList.remove("active");
+    pop_up.classList.remove("active");
+    close_humberger.classList.remove("active");
+    humberger.classList.remove("active");
+})
+
+
+btn_up.addEventListener("click" , ()=> {
+    window.scrollTo({
+        top : 0,
+        left : 0,
+        behavior : "smooth"
+    })
+})
+
+window.addEventListener("scroll" , ()=> {
+    if(window.pageYOffset > 400) {
+        btn_up.classList.add("active");
+    }
+    else {
+        btn_up.classList.remove("active");
+    }
+})
+    </script>
+</body>
+</html>
